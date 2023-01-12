@@ -2,13 +2,21 @@ import './App.css';
 import React, { useState } from 'react';
 
 function App() {
-  const board = [
-    // This is the map
+  const levels = {
+    0: [
+    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 0, 2, 1],
+    [1, 1, 1, 1]
+    ],
+    1: [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -18,8 +26,11 @@ function App() {
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  ];
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    ]
+  };
+
+  const current_level = 0;
 
   // Current position in map
   const [currentPosition, setCurrentPosition] = useState({row: 1, col: 1});
@@ -58,7 +69,7 @@ function App() {
       col += 1;
     }
 
-    return board[row][col];
+    return levels[current_level][row][col];
   }
 
   const button_class = (direction) => {
@@ -73,7 +84,7 @@ function App() {
 
   const check_goal = (row, col) => {
     console.log("nnnn");
-    if (board[row][col] === 2) {
+    if (levels[current_level][row][col] === 2) {
       setSuccessMessage("msg-yes");
     } else {
       setSuccessMessage("msg-no");
@@ -107,8 +118,10 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Level 1</h1>
+      <p>Go to blue destination clicking the buttons.</p>
       <div className="board">
-        {board.map((row, i) => (
+        {levels[current_level].map((row, i) => (
           <div key={i} className="row">
             {row.map((col, j) => (
               <div key={j} className={block_type(i, j, col)}>
