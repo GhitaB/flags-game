@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <div className="board">
         {board.map((row, i) => (
           <div key={i}>
             {row.map((col, j) => (
@@ -15,6 +15,14 @@ function App() {
           </div>
         ))}
       </div>
+
+      <div className="controls">
+        <button>Up</button>
+        <button>Down</button>
+        <button>Left</button>
+        <button>Right</button>
+      </div>
+
     </div>
   );
 }
