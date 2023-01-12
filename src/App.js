@@ -11,26 +11,44 @@ function App() {
     [1, 0, 2, 1],
     [1, 1, 1, 1]
     ],
+
     1: [
+    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 1, 0, 1],
+    [1, 0, 0, 1],
+    [1, 0, 2, 1],
+    [1, 1, 1, 1]
+    ],
+
+    2: [
+    [1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 1, 2, 1],
+    [1, 1, 0, 1, 0, 1],
+    [1, 0, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1]
+    ],
+
+    3: [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]
   };
 
-  const current_level = 0;
+  // Current level
+  const [level, setLevel] = useState(0);
 
   // Current position in map
   const [currentPosition, setCurrentPosition] = useState({row: 1, col: 1});
@@ -72,7 +90,7 @@ function App() {
       col += 1;
     }
 
-    return levels[current_level][row][col];
+    return levels[level][row][col];
   }
 
   const button_class = (direction) => {
@@ -86,7 +104,7 @@ function App() {
   }
 
   const check_goal = (row, col) => {
-    if (levels[current_level][row][col] === 2) {
+    if (levels[level][row][col] === 2) {
       setSuccessMessage("msg-yes");
       setNextLevel("enabled");
     } else {
@@ -124,7 +142,7 @@ function App() {
       <h1>Level 1</h1>
       <p>Go to blue destination clicking the buttons.</p>
       <div className="board">
-        {levels[current_level].map((row, i) => (
+        {levels[level].map((row, i) => (
           <div key={i} className="row">
             {row.map((col, j) => (
               <div key={j} className={block_type(i, j, col)}>
@@ -149,7 +167,12 @@ function App() {
         </button>
 
         <div>
-          <button className={nextLevel}>
+          <button className={nextLevel} onClick={() => {
+            setLevel(level + 1);
+            setCurrentPosition({row: 1, col: 1});
+            setSuccessMessage("msg-no");
+            setNextLevel("disabled");
+          }}>
             Next level
           </button>
         </div>
