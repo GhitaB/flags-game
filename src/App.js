@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
   const board = [
@@ -13,12 +14,12 @@ function App() {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
 
-  const current_position = {row: 1, col: 1};
+  const [currentPosition, setCurrentPosition] = useState({row: 1, col: 1});
 
   const block_type = (row, col, a_type) => {
     const block = {0: 'empty', 1: 'wall', 2: 'start', 3: 'flag'}[a_type];
     let class_name = block;
-    if(current_position.row === row && current_position.col === col) {
+    if(currentPosition.row === row && currentPosition.col === col) {
       class_name += " now";
     }
     return class_name;
@@ -26,8 +27,8 @@ function App() {
 
 
   const check_direction = (direction) => {
-    let row = current_position.row;
-    let col = current_position.col;
+    let row = currentPosition.row;
+    let col = currentPosition.col;
 
     if (direction === 'up') {
       row -= 1;
@@ -57,6 +58,29 @@ function App() {
     }
   }
 
+  const move = (direction) => {
+    let row = currentPosition.row;
+    let col = currentPosition.col;
+
+    if (direction === 'up') {
+      row -= 1;
+    }
+
+    if (direction === 'down') {
+      row += 1;
+    }
+
+    if (direction === 'left') {
+      col -= 1;
+    }
+
+    if (direction === 'right') {
+      col += 1;
+    }
+
+    setCurrentPosition({row: row, col: col});
+  }
+
   return (
     <div className="App">
       <div className="board">
@@ -72,10 +96,18 @@ function App() {
       </div>
 
       <div className="controls">
-        <button className={button_class("up")}>Up</button>
-        <button className={button_class("down")}>Down</button>
-        <button className={button_class("left")}>Left</button>
-        <button className={button_class("right")}>Right</button>
+        <button className={button_class("up")} onClick={() => move("up")}>
+          Up
+        </button>
+        <button className={button_class("down")} onClick={() => move("down")}>
+          Down
+        </button>
+        <button className={button_class("left")} onClick={() => move("left")}>
+          Left
+        </button>
+        <button className={button_class("right")} onClick={() => move("right")}>
+          Right
+        </button>
       </div>
 
     </div>
