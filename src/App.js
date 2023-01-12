@@ -24,6 +24,9 @@ function App() {
   // Current position in map
   const [currentPosition, setCurrentPosition] = useState({row: 1, col: 1});
 
+  // Message
+  const [successMessage, setSuccessMessage] = useState("msg-no");
+
   const block_type = (row, col, a_type) => {
     // Convert map value to class name for a position in map
     const block = {0: 'empty', 1: 'wall', 2: 'start', 3: 'flag'}[a_type];
@@ -68,6 +71,15 @@ function App() {
     }
   }
 
+  const check_goal = (row, col) => {
+    console.log("nnnn");
+    if (board[row][col] === 2) {
+      setSuccessMessage("msg-yes");
+    } else {
+      setSuccessMessage("msg-no");
+    }
+  }
+
   const move = (direction) => {
     // update current position based on direction (no validation included)
     let row = currentPosition.row;
@@ -90,6 +102,7 @@ function App() {
     }
 
     setCurrentPosition({row: row, col: col});
+    check_goal(row, col);
   }
 
   return (
@@ -120,6 +133,9 @@ function App() {
         </button>
       </div>
 
+      <div className={successMessage}>
+        Ați ajuns la destinație.
+      </div>
     </div>
   );
 }

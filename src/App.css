@@ -50,3 +50,11 @@ button.disabled {
   background: red !important;
   pointer-events: none;
 }
+
+div.msg-no {
+  display: none;
+}
+
+div.msg-yes {
+  font-size: 2em;
+}
