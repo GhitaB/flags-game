@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 function App() {
   const board = [
+    // This is the map
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 2],
     [1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -14,9 +15,11 @@ function App() {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
 
+  // Current position in map
   const [currentPosition, setCurrentPosition] = useState({row: 1, col: 1});
 
   const block_type = (row, col, a_type) => {
+    // Convert map value to class name for a position in map
     const block = {0: 'empty', 1: 'wall', 2: 'start', 3: 'flag'}[a_type];
     let class_name = block;
     if(currentPosition.row === row && currentPosition.col === col) {
@@ -25,8 +28,8 @@ function App() {
     return class_name;
   };
 
-
   const check_direction = (direction) => {
+    // return the value in map for a wanted direction
     let row = currentPosition.row;
     let col = currentPosition.col;
 
@@ -50,6 +53,7 @@ function App() {
   }
 
   const button_class = (direction) => {
+    // return the updated button class name for this moment in game
     const check = check_direction(direction);
     if (check === 1) {
       return "disabled";
@@ -59,6 +63,7 @@ function App() {
   }
 
   const move = (direction) => {
+    // update current position based on direction (no validation included)
     let row = currentPosition.row;
     let col = currentPosition.col;
 
