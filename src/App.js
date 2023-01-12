@@ -139,7 +139,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Level 1</h1>
+      <h1>Level {level + 1}</h1>
       <p>Go to blue destination clicking the buttons.</p>
       <div className="board">
         {levels[level].map((row, i) => (
