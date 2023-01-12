@@ -9,6 +9,7 @@ div.row {
 div.row div {
   width: 50px;
   height: 50px;
+  opacity: 0.4;
 }
 
 div.empty {
@@ -25,4 +26,8 @@ div.start {
 
 div.flag {
   background: green;
+}
+
+div.now {
+  opacity: 1 !important;
 }
