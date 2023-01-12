@@ -14,13 +14,19 @@ function App() {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
 
+  const block_type = (number) => {
+    return {0: 'empty', 1: 'wall', 2: 'start', 3: 'flag'}[number];
+  };
+
   return (
     <div className="App">
       <div className="board">
         {board.map((row, i) => (
-          <div key={i}>
+          <div key={i} className="row">
             {row.map((col, j) => (
-              <span key={j}>{col}</span>
+              <div key={j} className={block_type(col)}>
+                {block_type(col)}
+              </div>
             ))}
           </div>
         ))}
