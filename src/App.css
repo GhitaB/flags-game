@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+div.board {
+  margin-top: 2em;
+  display: inline-block;
+}
+
 div.row {
   display: flex;
 }
@@ -30,4 +35,16 @@ div.flag {
 
 div.now {
   opacity: 1 !important;
+}
+
+button {
+  width: 100px;
+  border: none;
+  margin: 1em;
+  padding: 5px;
+  background: green;
+}
+
+button.disabled {
+  background: red !important;
 }
