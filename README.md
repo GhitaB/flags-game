@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Game
+
+[PLAY DEMO](https://ghitab.github.io/flags-game/)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
