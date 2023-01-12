@@ -88,7 +88,6 @@ function App() {
           <div key={i} className="row">
             {row.map((col, j) => (
               <div key={j} className={block_type(i, j, col)}>
-                {block_type(i, j, col)}
               </div>
             ))}
           </div>

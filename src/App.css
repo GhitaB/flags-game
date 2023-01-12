@@ -43,8 +43,10 @@ button {
   margin: 1em;
   padding: 5px;
   background: green;
+  cursor: pointer;
 }
 
 button.disabled {
   background: red !important;
+  pointer-events: none;
 }
