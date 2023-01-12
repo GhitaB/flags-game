@@ -38,6 +38,9 @@ function App() {
   // Message
   const [successMessage, setSuccessMessage] = useState("msg-no");
 
+  // Next level
+  const [nextLevel, setNextLevel] = useState("disabled");
+
   const block_type = (row, col, a_type) => {
     // Convert map value to class name for a position in map
     const block = {0: 'empty', 1: 'wall', 2: 'start', 3: 'flag'}[a_type];
@@ -83,9 +86,9 @@ function App() {
   }
 
   const check_goal = (row, col) => {
-    console.log("nnnn");
     if (levels[current_level][row][col] === 2) {
       setSuccessMessage("msg-yes");
+      setNextLevel("enabled");
     } else {
       setSuccessMessage("msg-no");
     }
@@ -144,6 +147,12 @@ function App() {
         <button className={button_class("right")} onClick={() => move("right")}>
           Right
         </button>
+
+        <div>
+          <button className={nextLevel}>
+            Next level
+          </button>
+        </div>
       </div>
 
       <div className={successMessage}>
